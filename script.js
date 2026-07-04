@@ -43,16 +43,3 @@ window.addEventListener("scroll", () => {
         }
     });
 });
-
-const toggleBtn = document.getElementById("toggleMode");
-const body = document.body;
-
-toggleBtn.addEventListener("click", () => {
-    body.classList.toggle("dark-mode");
-    if (body.classList.contains("dark-mode")) {
-        toggleBtn.innerText = "☀️ Light Mode";
-    }
-    else{
-        toggleBtn.innerText = "🌙 Dark Mode";
-    }
-});

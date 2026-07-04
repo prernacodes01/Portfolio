@@ -1,3 +1,10 @@
+:root{
+    --bg: linear-gradient(135deg, #0f172a, #1e3a8a);
+    --card: rgba(255, 255, 255, 0.1);
+    --text: white;
+    --primary: #38bdf8;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +15,18 @@
 
 /* Body */
 body {
-    background: #f8fafc;
-    color: #0f172a;
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.4s ease;
+}
+
+.card,
+.resume-wrapper,
+.skill-box div{
+    background:rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 /* Navbar */
@@ -17,10 +34,13 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #2563eb;
-    padding: 15px 30px;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 40px;
     position: sticky;
     top: 0;
+    z-index: 1000;
 }
 
 nav .logo {
@@ -39,11 +59,10 @@ nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 16px;
-    transition: 0.3s;
 }
 
 nav ul li a:hover {
-    color: #38bdf8;
+    color: var(--primary);
 }
 
 /* Hero Section */
@@ -53,14 +72,17 @@ nav ul li a:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(to right, #2563eb, #38bdf8);
+    background: transparent;
     color: white;
     padding: 20px;
 }
 
 .hero h1 {
-    font-size: 50px;
-    margin: 10px 0;
+    font-size: 55px;
+    background: linear-gradient(90deg, #38bdf8, #a78bfa);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero h2 {
@@ -97,10 +119,14 @@ section {
     text-align: center;
 }
 
-section h2 {
-    margin-bottom: 20px;
-    font-size: 30px;
-    color: #2563eb;
+section h2::after{
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    margin: 12px auto 0;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #38bdf8, #8b5cf6);
 }
 
 /* About */
@@ -119,7 +145,7 @@ section h2 {
 }
 
 .skill-box div {
-    background: white;
+    background: rgba(255, 255, 255, 0.08);
     padding: 10px 15px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -134,16 +160,16 @@ section h2 {
 }
 
 .card {
-    background: white;
+    background: rgba(255, 255, 255, 0.08);
     padding: 20px;
     width: 250px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    transition: .4s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.card:hover{
+    transform: translateY(-12px) scale(1.03);
 }
 
 /* Contact */
@@ -161,26 +187,10 @@ input, textarea {
     border-radius: 5px;
 }
 
-button {
-    background: #2563eb;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background: #1e40af;
-}
-
 /* Footer */
 footer {
-    background: #0f172a;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, .15);
 }
 
 /* Responsive */
@@ -201,7 +211,15 @@ footer {
 
     .hero h2 {
         font-size: 22px;
+        color: #cbd5e1;
     }
+
+    .hero p{
+        color: #dbeafe;
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
 
     .project-container {
         flex-direction: column;
@@ -210,7 +228,6 @@ footer {
 }
 
 section{
-    opacity:0.5;
     transform: translateY(20px);
     transition: 0.6s ease-in-out;
 }
@@ -219,7 +236,7 @@ section{
     max-width: 900px;
     margin: auto;
     display: flex;
-    background: white;
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -257,7 +274,7 @@ section{
 }
 
 .resume-right h4 {
-    color: #2563eb;
+    color: #38bdf8;
     margin-bottom: 10px;
 }
 
@@ -282,20 +299,6 @@ section{
     border: 3px solid white;
 }
 
-/* Dark Mode */
-.dark-mode .resume-wrapper {
-    background: #1e293b;
-}
-
-.dark-mode .resume-right {
-    background: #1e293b;
-    color: white;
-}
-
-.dark-mode .resume-left {
-    background: #0f172a;
-}
-
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .resume-wrapper {
@@ -318,55 +321,34 @@ section{
 .demo-btn,
 .github-btn {
     text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: 10px 22px;
+    border-radius:30px;
     color: white;
     font-size: 14px;
     font-weight: bold;
     transition: 0.3s;
 }
 
-.dark-mode{
-    background: #0f172a;
-    color: white;
+.demo-btn,
+button {
+    background: linear-gradient(90deg, #38bdf8, #6366f1);
+    border: none;
 }
 
-.dark-mode nav{
-    background: #1e293b;
+.demo-btn:hover,
+button:hover {
+    transform: scale(1.05);
 }
 
-.dark-mode .card,
-.dark-mode .resume-box,
-.dark-mode .skill-box div{
-    background: #1e293b;
-    color: white;
+section {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s forwards;
 }
 
-.demo-btn {
-    background: #2563eb;
-}
-
-.demo-btn:hover {
-    background: #1e40af;
-}
-
-.github-btn {
-    background: #333;
-}
-
-.github-btn:hover {
-    background: #000;
-}
-
-.dark-mode .card{
-    background:#1e293b;
-    color:white;
-}
-
-.dark-mode .demo-btn{
-    background:#3b82f6;
-}
-
-.dark-mode .github-btn{
-    background:#4b5563;
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
